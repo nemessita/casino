@@ -1,0 +1,91 @@
+[
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "register_user",
+        "kind": 2,
+        "importPath": "casino",
+        "description": "casino",
+        "peekOfCode": "def register_user():\n    username = input(\"login: \")\n    password = input(\"password: \")\n    cash = int(input(\"cash: \"))\n    sql.execute(\"SELECT * FROM users WHERE username=?\", (username,))\n    if sql.fetchone():\n        print(\"qeydiyyayin artiq var!\")\n    else:\n        sql.execute(f\"INSERT INTO users (username, password, cash) VALUES ('{username}', '{password}', '{cash}')\")\n        db.commit()",
+        "detail": "casino",
+        "documentation": {}
+    },
+    {
+        "label": "play_game",
+        "kind": 2,
+        "importPath": "casino",
+        "description": "casino",
+        "peekOfCode": "def play_game():\n    username = input(\"Username: \")\n    password = input(\"Password: \")\n    sql.execute(\"SELECT * FROM users WHERE username=? AND password=?\", (username, password))\n    user = sql.fetchone()\n    if user:\n        sql.execute(\"SELECT cash FROM users WHERE username = ?\", (username,))\n        balance = sql.fetchone()[0]\n        if balance <= 0:\n            print(\"yeterince mebleg yoxdur\")",
+        "detail": "casino",
+        "documentation": {}
+    },
+    {
+        "label": "delete_user",
+        "kind": 2,
+        "importPath": "casino",
+        "description": "casino",
+        "peekOfCode": "def delete_user():\n    username = input(\"Enter username to delete: \")\n    sql.execute(\"DELETE FROM users WHERE username=?\", (username,))\n    db.commit()\n    print(f\"User '{username}' deleted.\")\ndef check_balance():\n    username = input(\"balansin yoxla : \")\n    sql.execute(\"SELECT cash FROM users WHERE username=?\", (username,))\n    result = sql.fetchone()\n    if result:",
+        "detail": "casino",
+        "documentation": {}
+    },
+    {
+        "label": "check_balance",
+        "kind": 2,
+        "importPath": "casino",
+        "description": "casino",
+        "peekOfCode": "def check_balance():\n    username = input(\"balansin yoxla : \")\n    sql.execute(\"SELECT cash FROM users WHERE username=?\", (username,))\n    result = sql.fetchone()\n    if result:\n        print(f\"Balance for {username}: {result[0]}\")\n    else:\n        print(\"bele login yoxdur.\")\ndef main():\n    while True:",
+        "detail": "casino",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "casino",
+        "description": "casino",
+        "peekOfCode": "def main():\n    while True:\n        choice = input(\"Select an option: (1) Qeydiyyatdan kecin (2) Oyuna basla  (3) İstifadəçini bazadan silin (4) Balansi yoxla (5) Cixish1: \")\n        if choice == \"1\":\n            register_user()\n        elif choice == \"2\":\n            play_game()\n        elif choice == \"3\":\n            delete_user()\n        elif choice == \"4\":",
+        "detail": "casino",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "casino",
+        "description": "casino",
+        "peekOfCode": "db = sqlite3.connect(\"casino.db\")\nsql = db.cursor()\n# sql.execute(\"\"\"CREATE TABLE IF NOT EXISTS users(\n#             id INTEGER PRIMARY KEY AUTOINCREMENT, \n#             username VARCHAR(50) NOT NULL, \n#             password VARCHAR(50) NOT NULL,\n#             cash INTEGER NOT NULL CHECK (cash >= 0)\n#             )\"\"\")\ndef register_user():\n    username = input(\"login: \")",
+        "detail": "casino",
+        "documentation": {}
+    },
+    {
+        "label": "sql",
+        "kind": 5,
+        "importPath": "casino",
+        "description": "casino",
+        "peekOfCode": "sql = db.cursor()\n# sql.execute(\"\"\"CREATE TABLE IF NOT EXISTS users(\n#             id INTEGER PRIMARY KEY AUTOINCREMENT, \n#             username VARCHAR(50) NOT NULL, \n#             password VARCHAR(50) NOT NULL,\n#             cash INTEGER NOT NULL CHECK (cash >= 0)\n#             )\"\"\")\ndef register_user():\n    username = input(\"login: \")\n    password = input(\"password: \")",
+        "detail": "casino",
+        "documentation": {}
+    },
+    {
+        "label": "check_grade",
+        "kind": 2,
+        "importPath": "score",
+        "description": "score",
+        "peekOfCode": "def check_grade(score):\n    if score >= 90: return 'A'\n    elif score >= 80: return 'B'\n    elif score >= 70: return 'C'\n    elif score >= 60: return 'D'\n    else: return 'F'\nprint(check_grade(int(input(\"Enter the number: \"))))",
+        "detail": "score",
+        "documentation": {}
+    }
+]
